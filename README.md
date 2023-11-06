@@ -7,7 +7,9 @@
 Системы управления базами данных: MySQL, PostgreSQL
 Средства визуализации данных: PowerBi, Matplotlib, seaborn
 Инструменты для машинного обучения: scikit-learn, TensorFlow
+
 Проекты
+
 Проект 1: Калькулятор юнит-экономики онлайн-школы
 
 Что нужно было сделать:
@@ -82,6 +84,5 @@
 Итог №1
 Итог №2
 Контактная информация
-Email: name@email.com
-LinkedIn: https://www.linkedin.com/in/username/
-Личный сайт: https://www.username.com
+Email: moiseyi.galkovich@gmail.com
+LinkedIn: https://www.linkedin.com/in/vladimir-k-a3ab7146
