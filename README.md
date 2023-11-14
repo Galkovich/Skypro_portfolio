@@ -1,5 +1,5 @@
-# Skypro_portfolio
-Привет! Меня зовут Владимир, я начинающий аналитик данных. В этом репозитории вы можете найти некоторые из моих проектов, выполненных во время обучения и практики.
+# Кан_Владимир/Skypro_portfolio
+Привет! Меня зовут Владимир, я начинающий аналитик данных. В этом репози тории вы можете найти некоторые из моих проектов, выполненных во время обучения и практики.
 
 ## Навыки и технологии
 - Инструменты анализа данных: ``SQL``, ``Excel`` 
@@ -25,7 +25,7 @@
 </li>
 </ol>
 
-> <a href="https://github.com/Skyproportfolio/data-analytics-5month/blob/main/Проект%20№1.xlsx">Ссылка на проект</a>
+> <a href="https://github.com/Galkovich/Skypro_portfolio/blob/main/Проект%20№1.xlsx">Ссылка на проект</a>
  
 <p>Выводы (итоги):<p>
 <ol>
@@ -51,10 +51,7 @@
    <li>Задача №1. С помощью сводных таблиц рассчитала нужные метрики и проанализировала какая динамика пользовательской активности на платформе, опираясь на все рассчитанные метрики.</li>
    <li>Задача №2. Построил калькулятор юнит-экономики, в котором автоматически пересчитываются определенные метрики. Затем предложил сократить постоянные расходы (например, убрав из аренды непопулярные фильмы, или пересмотрев мотивацию ЗП, уменьшить расходы САС, так как будем опираться больше на «старую» базу клиентов, которые у нас уже есть, но при этом будем также получать «новых» клиентов нашего кинотеатра, и повысить процент удержания клиентов при помощи увеличения скидок.</li>
 </ol>
-    
 
-
-> <a href="https://drive.google.com/drive/folders/11HcEeqniyrCMjuwHZ0GLysX0A2SEv-_x">Ссылка на проект</a>
   
 <p>Выводы (итоги):<p>
 <ol>
@@ -69,82 +66,30 @@
 <p> Проект 3: Когортный анализ онлайн-кинотеатра с помощью SQL</p>
 <p>Что нужно было сделать: Постройте распределение выплаченных клиентами денег по месяцам и построить три разных скользящих средних (по сумме денег по месяцам)
 </p>
-<ol>
-  <li>Задача №1</li>
-  <li>Задача №2.</li>
-</ol>
 
 <p>Как решал: 
-select a.*,
+<p>select a.*,</p>
 
-   avg(amt_payment) over (order by date_month rows between 2 preceding and current row) as ma3,
-   avg(amt_payment) over (order by date_month rows between 6 preceding and current row) as ma7,
-   avg(amt_payment) over (order by date_month rows between 2 preceding and 2 following) as MA_2side,
-   avg(amt_payment) over () as avg_all
-from
-(
-select date_trunc('month', date_purchase) as date_month,
-   sum(amt_payment) as amt_payment
-from skycinema.client_sign_up
-group by date_month
-) a
+   <p>avg(amt_payment) over (order by date_month rows between 2 preceding and current row) as ma3, </p>
+   <p>avg(amt_payment) over (order by date_month rows between 6 preceding and current row) as ma7, </p>
+   <p>avg(amt_payment) over (order by date_month rows between 2 preceding and 2 following) as MA_2side, </p>
+   <p>avg(amt_payment) over () as avg_all </p>
+<p>from </p>
+<p>( </p>
+<p>select date_trunc('month', date_purchase) as date_month, </p>
+<p>   sum(amt_payment) as amt_payment </p>
+<p>from skycinema.client_sign_up </p>
+<p>group by date_month </p>
+<p>) a </p>
 
 </p>
   
-> <a href="https://drive.google.com/drive/folders/1wdD-mfSeIsHWgrMLJz8Tv_ClAuP_EAOQ?usp=sharing">Ссылка на проект</a>
-
-<p>Выводы (итоги):</p>
+<p>Итог: написан скрипт и построен график скользящего среднего</p>
 <br> 
 
 
 
-<br> 
-<p> Проект 4: Построение витрины для модели машинного обучения в банке</p>
-<p>Что нужно было сделать: построить витрину для машинного обучения в банке</p>
-<ol>
-  <li>Задача №1</li>
-  <li>Задача №2.</li>
-</ol>
-
-<p>Как решал: 
-select t.*
-   , amt_loan::float / sum_city::float as share_loan_city
-   , amt_loan::float / sum_type::float as share_loan_type
-   , amt_loan::float / sum_type_city::float as share_type_city
-from
-(select id_client
-    , name_city
-    , (case when gender = 'M' then 1  
-        when gender = 'F' then 0 end) as nflag_gender
-    , age
-    , first_time
-    , (case when cellphone is null then 0 
-         when cellphone is not null then 1 end) as nflag_cellphone
-    , is_active
-    , cl_segm
-    , amt_loan
-    , date_loan::date
-    , credit_type
-    , sum(amt_loan) over (partition by name_city) as sum_city
-    , sum(amt_loan) over (partition by credit_type) as sum_type
-    , sum(amt_loan) over (partition by credit_type, name_city) sum_type_city
-    , count(amt_loan) over (partition by name_city) as cnt_city
-    , count(amt_loan) over (partition by credit_type) as cnt_type
-    , count(amt_loan) over (partition by credit_type, name_city) as cnt_type_city
-from skybank.late_collection_clients as l
-
-join skybank.region_dict as r
-    on l.id_city = r.id_city
-) t
-
-</p>
-  
-> <a href="https://drive.google.com/drive/folders/1wdD-mfSeIsHWgrMLJz8Tv_ClAuP_EAOQ?usp=sharing">Ссылка на проект</a>
-
-<p>Итог: написан скрипт, который сделал витрину с заданными полями</p>
-<br> 
-
-<p> Проект 5: Моделирование изменения балансов студентов</p>
+<p> Проект 4: Моделирование изменения балансов студентов</p>
 <p>Что нужно было сделать: смоделировать изменение балансов студентов
 </p>
 <ol>
@@ -171,13 +116,13 @@ join skybank.region_dict as r
 <p>Как решал, Задача №2 : построена линейная диаграмма по вычесленным параметрам
 </p>
   
-> <a href="https://drive.google.com/drive/folders/1wdD-mfSeIsHWgrMLJz8Tv_ClAuP_EAOQ?usp=sharing">Ссылка на проект</a>
+> <a href="https://github.com/Galkovich/Skypro_portfolio/blob/main/Проект%205.xlsx">Ссылка на проект</a>
 
 <p>Итог: На графике мы видим, что у нас очень большая разница между начисленными и списанными уроками, около 5 тысяч. Это говорит о том, что студенты не заинтересованы в прохождении оплаченных уроков, что может привести к заявлениям по возврату денежных средств или заморозке обучения, что негативно скажется на нашем финансовом состоянии. Необходимо чем-то замотивировать студентов, чтобы им стало интересно обучаться.
-<p>
+</p>
 <br> 
 
 
 ## Контактная информация
-Email: moiseyi.galkovich@gmail.com
-LinkedIn: https://www.linkedin.com/in/vladimir-k-a3ab7146
+<p>Email: <email>moiseyi.galkovich@gmail.com</email></p>
+<p>LinkedIn: https://www.linkedin.com/in/vladimir-k-a3ab7146</p>
